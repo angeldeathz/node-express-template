@@ -1,7 +1,7 @@
-import { start } from "./app";
+import app from "./app";
 
 try {
-  start();
+  app();
 } catch (e) {
   console.log(e);
   process.exit(1);

@@ -1,3 +1,5 @@
 export function getHello() {
-  return "Hello World!";
+  return {
+    message: "Hello World!",
+  };
 }

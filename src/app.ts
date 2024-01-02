@@ -1,9 +1,10 @@
-import { routes } from "./infrastructure/routes/routes";
+import routes from "./infrastructure/routes/routes";
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import errorHandler from "./infrastructure/error/error-handler";
 
-function start() {
+const app = function start() {
   // environments configs
   dotenv.config();
 
@@ -17,10 +18,13 @@ function start() {
   // routes configs
   app.use("/", routes);
 
+  //
+  app.use(errorHandler);
+
   // listen app
   app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
-}
+};
 
-export { start };
+export default app;

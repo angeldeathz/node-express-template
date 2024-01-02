@@ -1,14 +1,17 @@
 import { Request, Response } from "express";
+import { AppError } from "./app-error";
 
 const errorHandler = async (
-  error: any,
+  error: AppError,
   request: Request,
   response: Response,
   next: any
 ) => {
   console.log(`error ${error.message}`);
-  const status = error.status || 500;
-  response.status(status).send(error.message);
+  response.statusCode = error.status || 500;
+  response.send({
+    error: error.message,
+  });
 };
 
 export default errorHandler;

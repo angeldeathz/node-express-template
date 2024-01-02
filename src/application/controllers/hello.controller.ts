@@ -12,6 +12,6 @@ helloController.get("/hello", (req: Request, res: Response): void => {
     throw new Error("Name is required!");
     res.send(response);
   } catch (e: any) {
-    throw new AppError(405, e.message);
+    throw new AppError(400, e.message);
   }
 });

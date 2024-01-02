@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import errorHandler from "./infrastructure/error/error-handler";
+import traceability from "./infrastructure/middlewares/traceability";
 
 const app = function start() {
   // environments configs
@@ -15,10 +16,13 @@ const app = function start() {
   app.use(bodyParser.json({ limit: "50mb", type: "application/json" }));
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
+  // traceability
+  app.use(traceability);
+
   // routes configs
   app.use("/", routes);
 
-  //
+  // error handler
   app.use(errorHandler);
 
   // listen app

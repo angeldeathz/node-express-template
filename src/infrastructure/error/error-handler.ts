@@ -7,7 +7,7 @@ const errorHandler = async (
   response: Response,
   next: any
 ) => {
-  console.log(`error ${error.message}`);
+  console.log(`ERROR: ${error.message}`);
   response.statusCode = error.status || 500;
   response.send({
     error: error.message,

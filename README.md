@@ -1,6 +1,6 @@
-# Project Title
+# node-express-template
 
-A nice project with a nice description
+This is a simple express template
 
 ---
 

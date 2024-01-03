@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { Request, Response } from "express";
 
-const traceability = async (
+const traceabilityMiddleware = async (
   request: Request,
   response: Response,
   next: any
@@ -18,4 +18,4 @@ const traceability = async (
   next();
 };
 
-export default traceability;
+export default traceabilityMiddleware;

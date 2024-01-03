@@ -3,7 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import errorHandler from "./infrastructure/error/error-handler";
-import traceability from "./infrastructure/middlewares/traceability";
+import traceabilityMiddleware from "./infrastructure/middlewares/traceability.middleware";
+import logger from "./infrastructure/log/logger";
 
 const app = function start() {
   // environments configs
@@ -17,7 +18,7 @@ const app = function start() {
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
   // traceability
-  app.use(traceability);
+  app.use(traceabilityMiddleware);
 
   // routes configs
   app.use("/", routes);
@@ -27,7 +28,7 @@ const app = function start() {
 
   // listen app
   app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+    logger.info(`Listening on port ${port}`);
   });
 };
 

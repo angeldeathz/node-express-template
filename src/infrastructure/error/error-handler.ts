@@ -13,6 +13,7 @@ const errorHandler = async (
   response.send({
     error: error.message,
   });
+  next();
 };
 
 export default errorHandler;

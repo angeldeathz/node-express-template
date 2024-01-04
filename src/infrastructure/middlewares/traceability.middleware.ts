@@ -4,7 +4,7 @@ import { setGlobalMetadata } from "../log/logger";
 
 const traceabilityMiddleware = async (
   request: Request,
-  response: Response,
+  _response: Response,
   next: any
 ) => {
   let uuid: any;

@@ -4,7 +4,7 @@ import { logger } from "../log/logger";
 
 const errorHandler = async (
   error: AppError,
-  request: Request,
+  _request: Request,
   response: Response,
   next: any
 ) => {
@@ -13,7 +13,6 @@ const errorHandler = async (
   response.send({
     error: error.message,
   });
-  next();
 };
 
 export default errorHandler;

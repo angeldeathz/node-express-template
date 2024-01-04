@@ -4,4 +4,8 @@ const get = async (url: string) => {
   return axios.get(url);
 };
 
-export { get };
+const post = async (url: string, body?: any) => {
+  return axios.post(url, body);
+};
+
+export { get, post };

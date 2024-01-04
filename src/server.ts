@@ -1,5 +1,5 @@
 import app from "./app";
-import logger from "./infrastructure/log/logger";
+import { logger } from "./infrastructure/log/logger";
 
 try {
   app();

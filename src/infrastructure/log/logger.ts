@@ -1,7 +1,7 @@
 import winston from "winston";
 const { combine, timestamp, json } = winston.format;
 
-const logger = winston.createLogger({
+let logger = winston.createLogger({
   level: "info",
   format: combine(
     timestamp({
@@ -9,8 +9,12 @@ const logger = winston.createLogger({
     }),
     json()
   ),
-  defaultMeta: { service: "user-service" },
   transports: [new winston.transports.Console()],
 });
 
-export default logger;
+const setGlobalMetadata = (metadata: any) => {
+  const childLogger = logger.child(metadata);
+  logger = childLogger;
+};
+
+export { logger, setGlobalMetadata };

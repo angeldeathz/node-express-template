@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import errorHandler from "./infrastructure/error/error-handler";
 import traceabilityMiddleware from "./infrastructure/middlewares/traceability.middleware";
-import logger from "./infrastructure/log/logger";
+import { logger } from "./infrastructure/log/logger";
 
 const app = function start() {
   // environments configs

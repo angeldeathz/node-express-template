@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { Request, Response } from "express";
+import { setGlobalMetadata } from "../log/logger";
 
 const traceabilityMiddleware = async (
   request: Request,
@@ -14,7 +15,7 @@ const traceabilityMiddleware = async (
     uuid = crypto.randomUUID();
   }
 
-  response.setHeader("Trace-id", uuid);
+  setGlobalMetadata({ traceId: uuid });
   next();
 };
 

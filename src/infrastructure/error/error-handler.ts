@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppError } from "./app-error";
-import logger from "../log/logger";
+import { logger } from "../log/logger";
 
 const errorHandler = async (
   error: AppError,

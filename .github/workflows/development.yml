@@ -1,0 +1,62 @@
+name: Development
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - develop
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-ecosystem/action-regex-match@v2
+        id: regex-match
+        with:
+          text: ${{ github.head_ref }}
+          regex: "^(feature|hotfix|bug|spike)+[/][a-zA-Z]+"
+      - uses: actions-ecosystem/action-add-labels@v1
+      - run: |
+          echo ${{ steps.regex-match.outputs.match}}
+          if ${{ steps.regex-match.outputs.match != '' }}; then
+            echo "Your branch matches with the pattern successfully."
+          else
+            echo "Your branch doesn't match with the pattern (feature|hotfix|bug|spike)+[/][a-zA-Z]+"
+            echo "Please check your branch name, create a new branch in your machine, then"
+            echo "push the new branch."
+            echo "Correct branch names examples:"
+            echo "{feature|hotfix|bug|spike}/message-about-the-branch-topic"
+            echo "feature/new-client-api"
+            exit 1
+          fi
+
+  security:
+    needs: [check-branch-name]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: d1b602aa-5ed4-44ee-9174-249db76e3096
+
+  build:
+    needs: [security]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        env:
+          CI: true
+        run: npm ci
+
+      - name: Build application
+        env:
+          CI: true
+        run: npm run build

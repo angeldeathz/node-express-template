@@ -1,7 +1,7 @@
 import express from "express";
-import { helloController } from "../../application/controllers/hello.controller";
+import { getByCountryController } from "../../contexts/universities/application/controllers/get-by-country.controller";
 
 const routes = express.Router();
-routes.use(helloController);
+routes.use(getByCountryController);
 
 export default routes;

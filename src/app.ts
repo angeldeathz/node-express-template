@@ -1,17 +1,14 @@
 import routes from "./infrastructure/routes/routes";
 import express from "express";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import errorHandler from "./infrastructure/error/error-handler";
 import traceabilityMiddleware from "./infrastructure/middlewares/traceability.middleware";
 import { logger } from "./infrastructure/log/logger";
+import { PORT } from "./infrastructure/utils/config";
 
 const app = function start() {
-  // environments configs
-  dotenv.config();
-
   const app = express();
-  const port = process.env.PORT || 3000;
+  const port = PORT || 3000;
 
   // body parser
   app.use(bodyParser.json({ limit: "50mb", type: "application/json" }));

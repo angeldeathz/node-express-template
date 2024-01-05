@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const get = async (url: string) => {
-  return axios.get(url);
+const get = async <T>(url: string) => {
+  return axios.get<T>(url);
 };
 
-const post = async (url: string, body?: any) => {
-  return axios.post(url, body);
+const post = async <T>(url: string, body?: any) => {
+  return axios.post<T>(url, body);
 };
 
 export { get, post };

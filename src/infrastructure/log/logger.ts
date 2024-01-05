@@ -1,8 +1,9 @@
 import winston from "winston";
+import { ENV } from "../utils/config";
 const { combine, timestamp, json } = winston.format;
 
 const customFormat = winston.format((info: any) => ({
-  environment: process.env.ENV,
+  environment: ENV,
   ...info,
 }));
 

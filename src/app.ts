@@ -25,7 +25,7 @@ const initApp = async function start() {
   app.use(errorHandler);
 
   // setup swagger
-  if (ENV == "development") {
+  if (ENV == "dev") {
     app.use("/docs", await TspecDocsMiddleware());
   }
 

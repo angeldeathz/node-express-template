@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions-ecosystem/action-regex-match@v2
+      - uses: kaisugi/action-regex-match@v1.0.
         id: regex-match
         with:
           text: ${{ github.head_ref }}

@@ -16,7 +16,7 @@ jobs:
         with:
           text: ${{ github.head_ref }}
           regex: "^(feature|hotfix|bug|spike)+[/][a-zA-Z]+"
-      - uses: actions-ecosystem/action-add-labels@v1
+      - uses: actions-ecosystem/action-add-labels@v1.1.0
       - run: |
           echo ${{ steps.regex-match.outputs.match}}
           if ${{ steps.regex-match.outputs.match != '' }}; then

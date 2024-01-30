@@ -6,7 +6,7 @@ const errorHandler = async (
   error: AppError,
   _request: Request,
   response: Response,
-  next: any
+  _next: any
 ) => {
   logger.info(error.message);
   response.statusCode = error.status || 500;

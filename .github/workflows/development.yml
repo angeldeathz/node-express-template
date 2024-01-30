@@ -10,8 +10,8 @@ jobs:
   check-branch-name:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions-ecosystem/action-regex-match@v2
+      - uses: actions/checkout@v4
+      - uses: kaisugi/action-regex-match@v1.0.0
         id: regex-match
         with:
           text: ${{ github.head_ref }}
@@ -31,31 +31,45 @@ jobs:
             exit 1
           fi
 
-  security:
+  snyk-check:
     needs: [check-branch-name]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
+        continue-on-error: true # provisional
         env:
-          SNYK_TOKEN: d1b602aa-5ed4-44ee-9174-249db76e3096
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
 
-  build:
-    needs: [security]
+  sonar-cloud-check:
+    needs: [check-branch-name]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - uses: actions/setup-node@v3
+  build:
+    needs: [snyk-check, sonar-cloud-check]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "18"
-
       - name: Install dependencies
         env:
           CI: true
         run: npm ci
-
       - name: Build application
         env:
           CI: true

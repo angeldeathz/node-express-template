@@ -4,9 +4,10 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build",
     "serve": "node dist/server.js",
-    "dev": "nodemon src/server.ts"
+    "dev": "nodemon src/server.ts",
+    "docs": "npx tspec generate --outputPath docs/openapi.json"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "ts-node": "^10.9.2",
+    "tspec": "^0.1.111",
     "winston": "^3.11.0"
   },
   "devDependencies": {

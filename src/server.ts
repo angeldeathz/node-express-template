@@ -1,8 +1,8 @@
-import app from "./app";
+import initApp from "./app";
 import { logger } from "./infrastructure/log/logger";
 
 try {
-  app();
+  initApp();
 } catch (e) {
   logger.info(e);
   process.exit(1);

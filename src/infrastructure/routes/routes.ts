@@ -1,7 +1,7 @@
 import express from "express";
-import { helloController } from "../../application/controllers/hello.controller";
+import universitiesRoutes from "../../contexts/universities/infrastructure/routes/universities.routes";
 
 const routes = express.Router();
-routes.use(helloController);
+routes.use(universitiesRoutes);
 
 export default routes;

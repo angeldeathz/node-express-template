@@ -1,5 +1,5 @@
 import express from "express";
-import { getByCountryController } from "../controllers/get-by-country.controller";
+import { getByCountryController } from "./get-by-country.controller";
 
 const universitiesRoutes = express.Router();
 universitiesRoutes.use(getByCountryController);

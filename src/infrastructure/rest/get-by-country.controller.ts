@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { Request, Response } from "express";
-import { AppError } from "../../../../infrastructure/error/app-error";
-import runAsync from "../../../../infrastructure/utils/run-async";
-import { getByCountry } from "../../application/services/get-by-country.service";
+import { AppError } from "../error/app-error";
+import runAsync from "../utils/run-async";
+import { getByCountry } from "../../application/universities/get-by-country.service";
 export const getByCountryController = Router();
 
 getByCountryController.get(

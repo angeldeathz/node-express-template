@@ -1,6 +1,6 @@
-import { get } from "../../../../infrastructure/http/http-client";
-import { logger } from "../../../../infrastructure/log/logger";
-import { UNIVERSITIES_API } from "../../../../infrastructure/utils/config";
+import { get } from "../../infrastructure/http/http-client";
+import { logger } from "../../infrastructure/log/logger";
+import { UNIVERSITIES_API } from "../../infrastructure/utils/config";
 import { University } from "../../domain/university";
 
 const getByCountry = async (country: string) => {

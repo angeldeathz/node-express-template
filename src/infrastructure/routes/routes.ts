@@ -1,5 +1,5 @@
 import express from "express";
-import universitiesRoutes from "../../contexts/universities/infrastructure/routes/universities.routes";
+import universitiesRoutes from "../rest/universities.routes";
 
 const routes = express.Router();
 routes.use(universitiesRoutes);

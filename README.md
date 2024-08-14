@@ -4,16 +4,6 @@ This is a simple express template
 
 ---
 
-## Requirements
-
-For development, you will only need Node.js and a node global package, Yarn, installed in your environement.
-
-## Integrations
-
-This NodeJS Express template has the following integrations:
-
-- API documentation https://github.com/ts-spec/tspec
-
 ## Install
 
     $ git clone https://github.com/angeldeathz/node-express-template
@@ -22,12 +12,6 @@ This NodeJS Express template has the following integrations:
 
 ## Configure app
 
-Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
-
-- A setting;
-- Another setting;
-- One more setting;
-
 ## Running the project
 
     $ npm run dev
@@ -35,3 +19,11 @@ Open `a/nice/path/to/a.file` then edit it with your settings. You will need:
 ## Build for production
 
     $ npm run build
+
+# Run Database
+
+    $ docker build -f Dockerfile.posgresql -t postgresql:latest .
+
+# Run Database
+
+    $ docker run --name postgresql -p 5432:5432 -d postgresql:latest

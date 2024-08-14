@@ -1,0 +1,13 @@
+# Usa la imagen oficial de PostgreSQL como base
+FROM postgres:latest
+
+# Establece las variables de entorno necesarias
+ENV POSTGRES_USER=user
+ENV POSTGRES_PASSWORD=12345
+ENV POSTGRES_DB=tyne
+
+# Si tienes un script SQL de inicialización, puedes copiarlo dentro del contenedor
+COPY assets/script.sql /docker-entrypoint-initdb.d/
+
+# Exponer el puerto 5432
+EXPOSE 5432

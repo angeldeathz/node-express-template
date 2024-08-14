@@ -2,8 +2,6 @@
 
 This is a simple express template
 
----
-
 ## Install
 
     $ git clone https://github.com/angeldeathz/node-express-template
@@ -20,7 +18,7 @@ This is a simple express template
 
     $ npm run build
 
-# Run Database
+# Build Database
 
     $ docker build -f Dockerfile.posgresql -t postgresql:latest .
 
